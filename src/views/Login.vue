@@ -25,6 +25,7 @@ export default {
     submiting(username, password) {
       console.log("username", username);
       console.log("password", password);
+      this.$store.dispatch("user/login", { username, password });
     },
   },
 };
