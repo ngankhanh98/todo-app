@@ -1,8 +1,9 @@
 <template>
   <div class="text-center">
     <AuthenticateForm
-      title="Sign in"
-      okButtonLable="Sign in"
+      title="Change password"
+      okButtonLable="Change password"
+      :username="usern/username"
       @on-submit="submiting"
     >
       <div class="checkbox mb-3">
@@ -16,24 +17,19 @@
 
 <script>
 import AuthenticateForm from "../components/AuthenticateForm";
-import { mapGetters } from "vuex";
 
+import { mapGetters } from "vuex";
 export default {
-  name: "Login",
+  computed: {
+    ...mapGetters(["user/username"]),
+  },
+  name: "ChangePassword",
   components: {
     AuthenticateForm,
   },
-
-  computed: {
-    ...mapGetters(["user/authenticated"]),
-  },
-
   methods: {
-    async submiting(username, password) {
-      console.log("username", username);
-      console.log("password", password);
-      await this.$store.dispatch("user/login", { username, password });
-      console.log(this['user/authenticated'])
+    submiting(username, password) {
+      this.$store.dispatch("user/changePassword", password);
     },
   },
 };

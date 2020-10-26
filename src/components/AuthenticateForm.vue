@@ -7,11 +7,13 @@
       type="text"
       id="inputUsername"
       class="form-control"
-      :placeholder="username ?? 'Username'"
+      :placeholder="username"
       v-model="inputUsername"
       required
       autofocus
+      v-bind:class="{ username: readonly }"
     />
+
     <label for="inputPassword" class="sr-only">Password</label>
     <input
       type="password"
